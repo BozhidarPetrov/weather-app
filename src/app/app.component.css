@@ -1,0 +1,9 @@
+.root {
+  display: flex;
+
+  /* height: 125vh;  */ /* 125vh for paid subscription with 5 and 7 days forecast */
+  height: 94.3vh; /* 94,3vh for free weatherapi subscription with 1 and 3 days forecast */
+  background-image: url(../assets/wp8999332-palm-beach-4k-wallpapers.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}

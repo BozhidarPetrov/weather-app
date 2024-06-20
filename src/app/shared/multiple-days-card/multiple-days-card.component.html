@@ -1,0 +1,30 @@
+<div class="card text-body card-with-shadow">
+  <div class="card-body p-4">
+    <h5>{{ day?.date }}</h5>
+    <div class="d-flex">
+      <h6 class="flex-grow-1">
+        {{ forecast?.location?.name }}, {{ forecast?.location?.region }},
+        {{ forecast?.location?.country }}
+      </h6>
+    </div>
+    <div class="d-flex flex-column text-center mt-5 mb-4">
+      <h6 class="display-4 mb-0 font-weight-bold">
+        Max: {{ day?.day?.maxtemp_c }}°C
+      </h6>
+      <span class="small" style="color: #868b94">{{
+        day?.day?.condition?.text
+      }}</span>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <div class="flex-grow-1" style="font-size: 1rem">
+        <div>Wind speed: {{ day?.day?.maxwind_kph }} km/h</div>
+        <div>Humidity: {{ day?.day?.avghumidity }}%</div>
+        <div>Average Temp: {{ day?.day?.avgtemp_c }}°C</div>
+      </div>
+      <div>
+        <img src="{{ day?.day?.condition?.icon }}" />
+      </div>
+    </div>
+  </div>
+</div>

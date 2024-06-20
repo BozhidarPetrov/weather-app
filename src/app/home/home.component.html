@@ -1,0 +1,62 @@
+<div class="home">
+  <app-logo />
+
+  <form class="form-inline" [formGroup]="form" (ngSubmit)="getWeather()">
+    <input
+      type="text"
+      style="width: 30%"
+      class="form-control mb-2 mr-sm-2"
+      id="inlineFormInputName2"
+      placeholder="Location..."
+      list="options"
+      formControlName="location"
+    />
+
+    <div *ngIf="suggestions">
+      <datalist id="options">
+        <div *ngFor="let suggestion of suggestions">
+          <option
+            value="{{ suggestion.name }}, {{ suggestion.country }}"
+          ></option>
+        </div>
+      </datalist>
+    </div>
+
+    <div class="input-group mb-2 mr-sm-2" style="width: 10%">
+      <div class="input-group-prepend">
+        <div style="height: 100%" class="input-group-text">Days:</div>
+      </div>
+
+      <select id="days" style="border-radius: 20%" formControlName="days">
+        <option value="1">1</option>
+        <option value="3">3</option>
+        <!-- <option value="5">5</option> // 5 and 7 days forecast need a paid weatherapi subscription
+        <option value="7">7</option> -->
+      </select>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-warning"
+      style="height: fit-content; width: fit-content"
+    >
+      <strong>FORECAST</strong>
+    </button>
+  </form>
+
+  <app-error-message [apiError]="apiError" *ngIf="hasError" />
+
+  <div
+    *ngIf="hasForecast"
+    [ngClass]="oneOrThreeDayForecast ? 'non-grid' : 'grid'"
+  >
+    <app-current-weather-card [forecast]="forecast" />
+
+    <app-multiple-days-card
+      [forecast]="forecast"
+      [day]="day"
+      [days]="days"
+      *ngFor="let day of days"
+    />
+  </div>
+</div>
